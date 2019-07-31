@@ -1,8 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import "./index.css";
+import App from "./App";
 
-
+ReactDOM.render(
+    //musimy dodać funkcjonalność router-react poprzez opakowanie <App/> BrowserRouter
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);

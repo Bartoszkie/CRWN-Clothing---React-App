@@ -15,11 +15,18 @@
       height: 240px;
       display: flex;
       flex-direction: column;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   
     button {
       margin-top: auto;
+    }
+
+    .empty-message {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
   

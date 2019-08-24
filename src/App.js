@@ -3,12 +3,17 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
+import {createStructuredSelector} from 'reselect';
 import { setCurrentUser } from "./redux/user/user.actions";
+
+import {selectCurrentUser} from './redux/user/user.selector';
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
+import CheckOutPage from './components/checkout/checkout.component';
 import Header from "./components/header/header.components";
 import SignInSignUpPage from "./pages/sign-in-sign-up/sign-in-sign-up.component";
+
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.css";
@@ -59,6 +64,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route exact path='/checkout' component={CheckOutPage}/>
           <Route
             exact
             path="/signin"
@@ -77,8 +83,8 @@ class App extends React.Component {
 }
 
 //chcemy miec dostep do currentUser w naszych propsach więc musimy zrobić mapStateToProps
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector ({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({

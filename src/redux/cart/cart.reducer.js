@@ -20,7 +20,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             //w tym celu spreadujemy startą tablicę oraz dodajemy nowe elementy zwórcone przez acton.payload
             // cartItems: [...state.cartItems, action.payload] 
             cartItems: addItemToCart(state.cartItems, action.payload)
-        }
+        };
         default: 
             return state
     }

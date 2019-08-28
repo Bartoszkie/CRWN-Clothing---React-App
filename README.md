@@ -1,5 +1,5 @@
 ### React e-commerce 
-So, this is my biggest react project (yet) and I'am still developing it. 
+So, this is my biggest react project (yet) and I'm still developing it while learning from all kinds of tutorials/documentations. 
 
 ### What is this about
 Quick intro: this app is about online clothes shopping. Users have ability to log-in - using their newly created account -  

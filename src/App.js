@@ -32,7 +32,6 @@ class App extends React.Component {
   componentDidMount() {
     const { setCurrentUser } = this.props;
     
-    
     //methoda z firebase.auth
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAth => {
       if (userAth) {

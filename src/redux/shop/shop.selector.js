@@ -8,11 +8,12 @@ export const selectCollections = createSelector(
 );
 
 export const selectCollectionForPreview = createSelector(
-  [selectCollections], 
+  [selectCollections],
   //mapowanie tablicy na obiekt
-  //checmy wszystkie keys i później map przez te key żeby zdobyć value tych key w tablicy 
-  collections => collections ? Object.keys(collections).map(key => collections[key]) : []
-)
+  //checmy wszystkie keys i później map przez te key żeby zdobyć value tych key w tablicy
+  collections =>
+    collections ? Object.keys(collections).map(key => collections[key]) : []
+);
 
 export const selectCollection = collectionUrlParam =>
   createSelector(
@@ -20,3 +21,12 @@ export const selectCollection = collectionUrlParam =>
     collections => (collections ? collections[collectionUrlParam] : null)
   );
 
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+);
+
+export const selectIsCollectionLoaded = createSelector(
+  [selectShop], 
+  shop => !!shop.collections
+);

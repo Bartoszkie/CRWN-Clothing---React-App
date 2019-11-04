@@ -29,3 +29,5 @@ export const selectCartTotal = createSelector(
             accumulatedPrice + cartItem.quantity * cartItem.price, 0
         )
 );
+
+

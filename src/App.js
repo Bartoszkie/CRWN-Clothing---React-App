@@ -4,9 +4,11 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import {createStructuredSelector} from 'reselect';
-import { setCurrentUser } from "./redux/user/user.actions";
 
+import { setCurrentUser } from "./redux/user/user.actions";
 import {selectCurrentUser} from './redux/user/user.selector';
+
+import {selectCollectionForPreview} from './redux/shop/shop.selector';
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
@@ -14,7 +16,7 @@ import CheckOutPage from './components/checkout/checkout.component';
 import Header from "./components/header/header.components";
 import SignInSignUpPage from "./pages/sign-in-sign-up/sign-in-sign-up.component";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from "./firebase/firebase.utils";
 
 import "./App.css";
 
@@ -30,7 +32,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser, collectionsArray } = this.props;
     
     //methoda z firebase.auth
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAth => {
@@ -45,6 +47,7 @@ class App extends React.Component {
         });
       } else {
         setCurrentUser(userAth);
+        addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({title, items})));
       }
     });
   }
@@ -83,7 +86,8 @@ class App extends React.Component {
 
 //chcemy miec dostep do currentUser w naszych propsach więc musimy zrobić mapStateToProps
 const mapStateToProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser, 
+  collectionsArray: selectCollectionForPreview
 });
 
 const mapDispatchToProps = dispatch => ({

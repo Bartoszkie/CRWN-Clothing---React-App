@@ -39,6 +39,42 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     // console.log(snapShot);
 }
 
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
+    console.log(collectionRef);
+
+    const batch = firestore.batch();
+    objectsToAdd.forEach(obj => {
+        //key bedzie unique jeśli zostawimy doc empty
+        const newDocRef = collectionRef.doc();
+        batch.set(newDocRef, obj);
+    });
+
+    return await batch.commit();
+};
+
+
+//chemy wziać cały zwrócony nowy snapshot i zmienić go z array na object
+export const convertCollectionSnapshotToMap = (collectionsSnapshot) => {
+    const transformedCollection = collectionsSnapshot.docs.map(
+        docSnapshot => {
+            const {title, items} = docSnapshot.data();
+
+            return {
+                //encodeURI - zawsze z renderem javascriptu. pass string i zwraca odpowieni jego format jako URL 
+                routeName: encodeURI(title.toLowerCase()), 
+                id: docSnapshot.id,
+                title, 
+                items,
+            }
+        }
+    );
+    return transformedCollection.reduce((accumulator, collection) => {
+        accumulator[collection.title.toLowerCase()] = collection;
+        return accumulator;
+    }, {});
+};
+
 firebase.initializeApp(config);
 
 //authorization

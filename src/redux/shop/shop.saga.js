@@ -1,4 +1,4 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import {all, takeLatest, call, put } from "redux-saga/effects";
 //takeEvery - listen to every action to a specific type that we pass to it
 //takeEvery robi nam non-blocking code aby nie blokować pozostałych sagów
 
@@ -31,4 +31,8 @@ export function* fetchCollectionStart() {
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionAsync
   );
+}
+
+export function* shopSagas() {
+  yield all([call(fetchCollectionStart)])
 }

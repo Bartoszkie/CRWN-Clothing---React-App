@@ -6,14 +6,12 @@ import {
   signInFailure,
   signOutSuccess,
   signOutFailure,
-  signUpStart,
   signUpSuccess,
   signUpFailure
 } from "./user.actions";
 
 import {
   auth,
-  gogleProvider,
   createUserProfileDocument,
   googleProvider,
   getCurrentUser

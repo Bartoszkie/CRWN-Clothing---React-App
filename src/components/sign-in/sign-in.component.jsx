@@ -12,7 +12,6 @@ import {
 
 import "./sign-in.style.scss";
 
-import { auth } from "firebase";
 
 const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   const [userCredentials, setCredentials] = useState({

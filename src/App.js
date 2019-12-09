@@ -14,7 +14,7 @@ import CheckOutPage from "./components/checkout/checkout.component";
 import Header from "./components/header/header.components";
 import SignInSignUpPage from "./pages/sign-in-sign-up/sign-in-sign-up.component";
 
-import "./App.css";
+import { GlobalStyle } from "./global.styles";
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
@@ -23,34 +23,32 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
-      <Header />
-      {/* Jeśli route będący w switchu pasujący URL, nie wyrenderuje nicz innego jak tego Routa */}
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route exact path="/checkout" component={CheckOutPage} />
-        <Route
-          exact
-          path="/signin"
-          render={() =>
-           currentUser ? <Redirect to="/" /> : <SignInSignUpPage />
-          }
-        />
-      </Switch>
+      <GlobalStyle/>
+        <Header />
+        {/* Jeśli route będący w switchu pasujący URL, nie wyrenderuje nicz innego jak tego Routa */}
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckOutPage} />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              currentUser ? <Redirect to="/" /> : <SignInSignUpPage />
+            }
+          />
+        </Switch>
     </div>
   );
 };
 
 //chcemy miec dostep do currentUser w naszych propsach więc musimy zrobić mapStateToProps
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
   checkUserSession: () => dispatch(checkUserSession())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -16,6 +16,11 @@
       grid-gap: 0;
     }
 
+    @media screen and (max-width: 540px) {
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
+
     & .collection-item {
       margin-bottom: 30px;
     }

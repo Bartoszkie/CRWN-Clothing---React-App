@@ -6,7 +6,11 @@
     padding: 15px 0;
     font-size: 20px;
     align-items: center;
-  
+
+    @media only screen and (max-width: 540px) {
+      font-size: 20px;
+    }
+
     .image-container {
       width: 23%;
       padding-right: 15px;
@@ -19,7 +23,7 @@
     .name,
     .quantity,
     .price {
-      width: 23%;
+      width: 25%;
     }
   
     .quantity {

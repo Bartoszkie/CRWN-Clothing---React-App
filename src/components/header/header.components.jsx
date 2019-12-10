@@ -10,7 +10,7 @@ import { selectCurrentUser } from "../../redux/user/user.selector.js";
 import { signOutStart } from "../../redux/user/user.actions";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import "./header.style.scss";
+
 
 import {
   HeaderContainer,

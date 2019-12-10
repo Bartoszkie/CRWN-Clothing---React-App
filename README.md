@@ -8,3 +8,5 @@ State managment is managed by Redux - loggers still appears in console beacuse p
 Users also have ability to choose items they want, get a quick reviev about what is in their cart at the particular moment  
 and 'go to checkout' to see what total cost is, what quantity of particular products is and decide to delete item or not. 
 
+### Live demo (with developed features up until now)
+https://crwn-clothing-cv.herokuapp.com/ 
